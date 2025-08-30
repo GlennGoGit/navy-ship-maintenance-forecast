@@ -1,0 +1,76 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Navy Ship Maintenance Forecast (Demo)\n",
+    "\n",
+    "This notebook demonstrates predictive analytics for ship maintenance scheduling using **synthetic data**.\n",
+    "\n",
+    "⚠️ All data here is fake and for demonstration only."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "from sklearn.linear_model import LinearRegression\n",
+    "\n",
+    "# --- Generate synthetic data ---\n",
+    "np.random.seed(42)\n",
+    "months = np.arange(1, 25)  # 24 months\n",
+    "maintenance_days = 20 + 0.5*months + np.random.randint(-3, 3, size=len(months))\n",
+    "\n",
+    "data = pd.DataFrame({\n",
+    "    'Month': months,\n",
+    "    'Maintenance_Days': maintenance_days\n",
+    "})\n",
+    "data.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# --- Train simple regression model ---\n",
+    "X = data[['Month']]\n",
+    "y = data['Maintenance_Days']\n",
+    "\n",
+    "model = LinearRegression()\n",
+    "model.fit(X, y)\n",
+    "\n",
+    "predictions = model.predict(X)\n",
+    "\n",
+    "plt.figure(figsize=(8,5))\n",
+    "plt.scatter(data['Month'], data['Maintenance_Days'], color='blue', label='Actual')\n",
+    "plt.plot(data['Month'], predictions, color='red', linewidth=2, label='Forecast')\n",
+    "plt.title('Synthetic Ship Maintenance Forecast')\n",
+    "plt.xlabel('Month')\n",
+    "plt.ylabel('Maintenance Days')\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "name": "python",
+   "version": "3.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
