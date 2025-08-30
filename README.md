@@ -25,3 +25,5 @@ Using Python (pandas, scikit-learn) and SQL queries, the model forecasts readine
 
 ## Outcome
 Provided a prototype model showing how predictive analytics can reduce downtime risk by informing commanders with data-driven scheduling insights.  
+## 📓 Demo Notebook
+- [forecast_model.ipynb](forecast_model.ipynb)
